@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataModelController;
+use App\Http\Controllers\DesaController;
+use App\Http\Controllers\KecamatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +26,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::resource('/ijin', DataModelController::class)->middleware('auth');
 Route::resource('/user', UserController::class)->middleware('admin');
+Route::resource('/kecamatan', KecamatanController::class)->middleware('admin');
+Route::resource('/desa', DesaController::class)->middleware('admin');
+Route::get('/profil', [DashboardController::class, 'profil']);
