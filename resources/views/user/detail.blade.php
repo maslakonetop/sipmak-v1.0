@@ -8,7 +8,11 @@
             @csrf
             <div class="row">
                 <div class="col-6">
-                    <img class="img-profile rounded-circle" src="/images/undraw_profile_2.svg">
+                    @if ($user->photo)
+                    <img class="img-profile rounded-circle" src="{{ asset('storage/' .$user->photo) }}" width="400">
+                    @else
+                    <img class="img-profile rounded-circle" src="/images/undraw_profile_2.svg" width="400">
+                    @endif
                 </div>
                 <div class="col-6">
                     <div class="form-group row">
@@ -50,6 +54,7 @@
                         <a href="/user/edit/{{ $user->id }}" class="btn btn-warning ms-auto">Edit</a>
                     </div>
                 </div>
+            </div>
         </form>
     </section>
 </div>

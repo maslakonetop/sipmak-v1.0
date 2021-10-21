@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataModel;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -30,6 +32,14 @@ class DashboardController extends Controller
             'tahunempat' => DataModel::where('ijinmulai', 'like', '2021%')->count(),
             'karangsuci' => DataModel::where('lokasimakam1', '=', 'TPU KARANG SUCI KELURAHAN DONAN')->count(),
             'kerkoff' => DataModel::where('lokasimakam1', '=', 'Taman Pemakaman Arimathea / Kerkop')->count()
+        ]);
+    }
+
+    public function profil()
+    {
+        return view('dashboard.profil', [
+            'judul' => 'Profil Saya',
+            'users' => User::where('id', auth()->user()->id)->get()
         ]);
     }
 }

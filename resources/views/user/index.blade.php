@@ -15,13 +15,12 @@
         <div class="row">
             <div class="col">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped table-bordered" style="width: 100%">
+                    <table class="table table-sm table-hover table-striped table-bordered" style="width: 100%">
                         <thead>
                             <th scope="col" class="text-center text-light bg-info">ID</th>
                             <th scope="col" class="text-center text-light bg-info">Nama</th>
                             <th scope="col" class="text-center text-light bg-info">Nama Pengguna</th>
                             <th scope="col" class="text-center text-light bg-info">Email</th>
-                            <th scope="col" class="text-center text-light bg-info">Foto PP</th>
                             <th scope="col" class="text-center text-light bg-info">Aksi</th>
                         </thead>
                         <tbody>
@@ -38,9 +37,6 @@
                                 </td>
                                 <td class="text-center text-dark">
                                     {{ $row->email }}
-                                </td>
-                                <td class="text-center text-dark">
-                                    {{ $row->photo }}
                                 </td>
                                 <td>
                                     <a href="/user/{{ $row->id }}" class="btn btn-success"><i

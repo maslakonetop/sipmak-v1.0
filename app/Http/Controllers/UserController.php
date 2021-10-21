@@ -48,8 +48,13 @@ class UserController extends Controller
             'username' => 'required|min:5|max:10|unique:users',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:7|max:14',
-            'ulangipassword' => 'same:password'
+            'ulangipassword' => 'same:password',
+            'photo' => 'image|file|max:2048'
         ]);
+
+        if ($request->file('photo')) {
+            $simpan['photo'] = $request->file('photo')->store('foto-profil');
+        }
 
         $simpan['password'] = Hash::make($simpan['password']);
 
@@ -95,16 +100,30 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $update = $request->validate([
+        $rules = [
             'name' => 'required|min:5|max:255',
-            'username' => 'required|min:5|max:10|unique:users',
-            'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:7|max:14',
-            'ulangipassword' => 'same:password'
-        ]);
+            'photo' => 'image|file|max:2048'
+        ];
+
+        $rules['password'] = Hash::make($rules['password']);
+
+        if ($request->username != $user->username) {
+            $rules['username'] = 'required|min:5|max:10|unique:users';
+        }
+
+        if ($request->email != $user->email) {
+            $rules['email'] = 'required|email:dns|unique:users';
+        }
+
+        if ($request->file('photo')) {
+            $rules['photo'] = $request->file('photo')->store('foto-profil');
+        }
+
+        $validatedData = $request->validate($rules);
 
         User::where('id', $user->id)
-            ->update('$update');
+            ->update($validatedData);
 
         return redirect('/user')->with('berhasil', 'Data berhasil diperbaharui');
     }

@@ -68,7 +68,7 @@
                                 required>
                         </div>
                         @error('email')
-                        <div class="invalid-feedback">
+                        <div class="invalid-feedback mb-5">
                             {{ $message }}
                         </div>
                         @enderror
@@ -89,7 +89,7 @@
                         <label for="ulangi password" class="col-sm-4 col-form-label">Ulangi Password</label>
                         <div class="col-sm-8">
                             <input type="password" name="ulangipassword" id="ulangipassword"
-                                class="form-control @error('ulangipassword') @enderror" required>
+                                class="form-control @error('ulangipassword') is-invalid @enderror" required>
                         </div>
                         @error('ulangipassword')
                         <div class="invalid-feedback">
@@ -98,13 +98,18 @@
                         @enderror
                     </div>
                     <div class="form-group row">
-                        <label for="ulangi password" class="col-sm-4 col-form-label">Unggah Foto Profil</label>
+                        <label for="photo" class="col-sm-4 col-form-label @error('photo') is-invalid @enderror">Unggah
+                            Foto Profil</label>
                         <div class="col-sm-8">
                             <div class="input-group mb-3">
-                                <input type="file" class="form-control" id="inputGroupFile02">
-                                <label class="input-group-text" for="inputGroupFile02">Unggah</label>
+                                <input type="file" class="form-control" id="photo" name="photo">
                             </div>
                         </div>
+                        @error('photo')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group row">
                         <button type="submit" class="btn btn-outline-info">Simpan</button>

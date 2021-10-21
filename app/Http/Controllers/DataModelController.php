@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataModel;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DataModelController extends Controller
 {
@@ -24,7 +26,15 @@ class DataModelController extends Controller
      */
     public function create()
     {
-        //
+        // $pengguna = DB::table('data_models')
+        //     ->join('id_pengguna', 'penggunas.nama_pengguna', '=', 'data_models.nama_pemohon')
+        //     ->join('nama_pengguna', 'penggunas.nama_pengguna', '=', 'data_models.nama_pemohon')
+        //     ->select('data_models.*', 'penggunas.id', 'penggunas.nama_pengguna')
+        //     ->get();
+        // dd($pengguna);
+        return view('ijin.create', [
+            'judul' => 'Buat Ijin Baru'
+        ]);
     }
 
     /**
