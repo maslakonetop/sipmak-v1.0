@@ -71,6 +71,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        dd($user);
         return view('user.detail', [
             'judul' => 'Detail User',
             'user' => $user

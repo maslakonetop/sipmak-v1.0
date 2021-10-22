@@ -5,9 +5,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataKarangSuciController;
+use App\Http\Controllers\DataKerkoffController;
+use App\Http\Controllers\DataKijingController;
 use App\Http\Controllers\DataModelController;
 use App\Http\Controllers\DesaController;
+use App\Http\Controllers\KarangsuciController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KerkoffController;
+use App\Http\Controllers\KijingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +34,7 @@ Route::resource('/ijin', DataModelController::class)->middleware('auth');
 Route::resource('/user', UserController::class)->middleware('admin');
 Route::resource('/kecamatan', KecamatanController::class)->middleware('admin');
 Route::resource('/desa', DesaController::class)->middleware('admin');
-Route::get('/profil', [DashboardController::class, 'profil']);
+Route::get('/profil', [DashboardController::class, 'profil'])->middleware('auth');
+Route::resource('/karangsuci', KarangsuciController::class)->middleware('auth');
+Route::resource('/kerkoff', KerkoffController::class)->middleware('auth');
+Route::resource('/kijing', KijingController::class)->middleware('auth');

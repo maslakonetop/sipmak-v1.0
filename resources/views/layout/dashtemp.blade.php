@@ -63,18 +63,42 @@
                 <a class="nav-link collapsed {{ Request::is('/ijin/*') ? 'active' : '' }}" href="#"
                     data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-database"></i>
-                    <span>Data Ijin</span>
+                    <span>Data Ijin Karang Suci</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data Ijin</h6>
-                        <a class="collapse-item" href="/ijin/create">Ijin Baru</a>
+                        <h6 class="collapse-header">Karangsuci</h6>
+                        <a class="collapse-item" href="/karangsuci">List Ijin</a>
+                        <a class="collapse-item" href="/karangsuci/create">Ijin Baru</a>
                         <a class="collapse-item" href="#">Pemutihan</a>
                         <a class="collapse-item" href="#">Kijing/Patok</a>
-                        <a class="collapse-item" href="#">Pembayaran</a>
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ Request::is('/ijin/*') ? 'active' : '' }}" href="#"
+                    data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+                    aria-controls="collapseThree">
+                    <i class="fas fa-database"></i>
+                    <span>Data Ijin Kerkoff</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Kerkoff Arimatea</h6>
+                        <a class="collapse-item" href="/kerkoff">List Ijin</a>
+                        <a class="collapse-item" href="/kerkoff/create">Ijin Baru</a>
+                        <a class="collapse-item" href="#">Pemutihan</a>
+                        <a class="collapse-item" href="#">Kijing/Patok</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-coins"></i>
+                    <span>Pembayaran</span></a>
+            </li>
+
             @can('admin')
 
             <!-- Nav Item - Utilities Collapse Menu -->
