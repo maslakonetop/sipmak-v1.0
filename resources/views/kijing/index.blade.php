@@ -22,7 +22,7 @@
                                         class="fas fa-search"></i></button>
                             </div>
                             <div class="col-md-3">
-                                <a href="/karangsuci/create" class="btn btn-outline-success mt-3"><i
+                                <a href="/kijing/create" class="btn btn-outline-success mt-3"><i
                                         class="fas fa-plus-circle"></i> Data Baru</a>
 
                             </div>
@@ -65,11 +65,11 @@
                                     {{ $row->statusbayar }}
                                 </td>
                                 <td>
-                                    <a href="/kerkoff/{{ $row->id }}" class="btn btn-success"><i
+                                    <a href="/kijing/{{ $row->id }}" class="btn btn-success"><i
                                             class="far fa-eye"></i></a>
-                                    <a href="/kerkoff/{{ $row->id }}/edit" class="btn btn-warning"><i
+                                    <a href="/kijing/{{ $row->id }}/edit" class="btn btn-warning"><i
                                             class="fas fa-pen-square"></i></a>
-                                    <form action="/kerkoff/{{ $row->id }}" method="post" class="d-inline">
+                                    <form action="/kijing/{{ $row->id }}" method="post" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-danger mb-4"

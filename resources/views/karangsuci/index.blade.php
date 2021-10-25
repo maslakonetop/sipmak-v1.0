@@ -2,12 +2,33 @@
 @section('admin-konten')
 <div class="container-fluid">
     <section class="base">
-        <h2 class="text-center">List Ijin Makam Karang Suci</h2>
+        <h2 class="text-center">{{ $judul }}</h2>
         <hr class="style14">
         <div class="row">
             <div class="col">
                 <div class="table-responsive">
-                    <a href="/karangsuci/create" class="btn btn-outline-info mb-3">Ijin Baru</a>
+                    <form action="/cari/karangsuci" method="GET">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{-- <select class="cari form-control" name="cari" id="nama_jenazah"></select> --}}
+
+                                <input type="text" name="cari" class="form-control mt-3"
+                                    placeholder="Cari Nama Jenazah atau Nama Pemohon" value="{{ old('cari') }}">
+                            </div>
+                            <div class="col-md-1">
+                                {{-- <input type="submit" class="btn btn-outline-info" value="CARI"> --}}
+                                <button type="submit" class="btn btn-outline-info mb-3"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/karangsuci/create" class="btn btn-outline-success mt-3"><i
+                                        class="fas fa-plus-circle"></i> Data Baru</a>
+
+                            </div>
+                        </div>
+                    </form>
+
                     <table class="table table-sm table-hover table-striped table-bordered" style="width: 100%">
                         <thead>
                             <th scope="col" class="text-center text-light bg-info">ID</th>
@@ -60,6 +81,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    Halaman : {{ $data->currentPage() }} <br />
+                    Jumlah Data : {{ $data->total() }} <br />
+                    Data Per Halaman : {{ $data->perPage() }} <br />
+                    <br>
                     {{ $data->links('pagination::bootstrap-4') }}
                 </div>
             </div>

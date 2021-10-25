@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/css/custom.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -70,8 +71,9 @@
                         <h6 class="collapse-header">Karangsuci</h6>
                         <a class="collapse-item" href="/karangsuci">List Ijin</a>
                         <a class="collapse-item" href="/karangsuci/create">Ijin Baru</a>
-                        <a class="collapse-item" href="#">Pemutihan</a>
-                        <a class="collapse-item" href="#">Kijing/Patok</a>
+                        <a class="collapse-item" href="/pemutihan/karangsuci">Pemutihan</a>
+                        <a class="collapse-item" href="/kijing/create">Kijing/Patok</a>
+                        <a class="collapse-item" href="#">Pembayaran</a>
                     </div>
                 </div>
             </li>
@@ -87,18 +89,77 @@
                         <h6 class="collapse-header">Kerkoff Arimatea</h6>
                         <a class="collapse-item" href="/kerkoff">List Ijin</a>
                         <a class="collapse-item" href="/kerkoff/create">Ijin Baru</a>
-                        <a class="collapse-item" href="#">Pemutihan</a>
-                        <a class="collapse-item" href="#">Kijing/Patok</a>
+                        <a class="collapse-item" href="/pemutihan/kerkoff">Pemutihan</a>
                     </div>
                 </div>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-coins"></i>
-                    <span>Pembayaran</span></a>
+                <a class="nav-link collapsed {{ Request::is('/ijin/*') ? 'active' : '' }}" href="#"
+                    data-toggle="collapse" data-target="#collapseKijing" aria-expanded="true"
+                    aria-controls="collapseThree">
+                    <i class="fas fa-database"></i>
+                    <span>Data Kijing</span>
+                </a>
+                <div id="collapseKijing" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Data Ijin Kijing</h6>
+                        <a class="collapse-item" href="/kijing">List Ijin</a>
+                        <a class="collapse-item" href="/kijing/create">Ijin Baru</a>
+                    </div>
+                </div>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ Request::is('/ijin/*') ? 'active' : '' }}" href="#"
+                    data-toggle="collapse" data-target="#collapsePembayaran" aria-expanded="true"
+                    aria-controls="collapsePembayaran">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Pembayaran</span>
+                </a>
+                <div id="collapsePembayaran" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">KarangSuci</h6>
+                        <a class="collapse-item" href="/pembayaran/karangsuci/ijinbaru">Ijin Baru</a>
+                        <a class="collapse-item" href="/pembayaran/karangsuci/pemutihan">Pemutihan</a>
+                        <a class="collapse-item" href="/pembayaran/karangsuci/patok">Kijin/Patok</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Kerkoff</h6>
+                        <a class="collapse-item" href="/pembayaran/kerkoff">List Ijin Kerkoff</a>
+                        <a class="collapse-item" href="/pembayaran/kerkoff/ijinbaru">Ijin Baru</a>
+                        <a class="collapse-item" href="/pembayaran/kerkoff/pemutihan">Pemutihan</a>
+                        <a class="collapse-item" href="/pembayaran/kerkoff/patok">Kijin/Patok</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link collapsed {{ Request::is('/ijin/*') ? 'active' : '' }}" href="#"
+                    data-toggle="collapse" data-target="#collapseKeuangan" aria-expanded="true"
+                    aria-controls="collapseThree">
+                    <i class="fas fa-database"></i>
+                    <span>Laporan Keuangan</span>
+                </a>
+                <div id="collapseKeuangan" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Laporan Keuangan</h6>
+                        <a class="collapse-item" href="/keuangan">List Ijin</a>
+                        <a class="collapse-item" href="/kerkoff/create">Ijin Baru</a>
+                        <a class="collapse-item" href="/pemutihan/kerkoff">Pemutihan</a>
+                        <a class="collapse-item" href="#">Kijing/Patok</a>
+                    </div>
+                </div>
+            </li>
             @can('admin')
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -130,22 +191,25 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-print"></i>
-                    <span>Cetak Data</span>
+                <a class="nav-link collapsed {{ Request::is('/ijin/*') ? 'active' : '' }}" href="#"
+                    data-toggle="collapse" data-target="#collapseCetak" aria-expanded="true"
+                    aria-controls="collapseCetak">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cetak</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapseCetak" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Cetak Data Ijin</h6>
-                        <a class="collapse-item" href="login.html">Ijin Baru</a>
-                        <a class="collapse-item" href="register.html">Pemutihan</a>
-                        <a class="collapse-item" href="forgot-password.html">Kijing</a>
-                        <h6 class="collapse-header">Cetak Bukti Pembayaran</h6>
-                        <a class="collapse-item" href="forgot-password.html">Bukti Pembayaran</a>
+                        <h6 class="collapse-header">KarangSuci</h6>
+                        <a class="collapse-item" href="/cetak/karangsuci/ijinbaru">Cetak Ijin Baru</a>
+                        <a class="collapse-item" href="/cetak/karangsuci/pemutihan">Cetak Pemutihan</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Kerkoff</h6>
+                        <a class="collapse-item" href="/cetak/kerkoff/ijinbaru">Cetak Ijin Baru</a>
+                        <a class="collapse-item" href="/cetak/kerkoff/pemutihan">Cetak Pemutihan</a>
                     </div>
                 </div>
-            </li>
+            </li>>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
@@ -308,8 +372,14 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
+
+
+
+
+    <!-- Bootstrap core JavaScript
+        -->
     <script src="/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

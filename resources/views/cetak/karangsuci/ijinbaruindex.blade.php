@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col">
                 <div class="table-responsive">
-                    <form action="/cari/kerkoff" method="GET">
+                    <form action="/cetak/karangsuci/ijinbaru/cari" method="GET">
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
@@ -20,11 +20,6 @@
                                 {{-- <input type="submit" class="btn btn-outline-info" value="CARI"> --}}
                                 <button type="submit" class="btn btn-outline-info mb-3"><i
                                         class="fas fa-search"></i></button>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="/karangsuci/create" class="btn btn-outline-success mt-3"><i
-                                        class="fas fa-plus-circle"></i> Data Baru</a>
-
                             </div>
                         </div>
                     </form>
@@ -47,7 +42,7 @@
                                     {{ $row->id }}
                                 </td>
                                 <td class="text-center text-dark">
-                                    {{ $row->kode }}/00{{ $row->nobuku_plat }}
+                                    {{ $row->kode }}-00{{ $row->nobuku_plat }}
                                 </td>
                                 <td class="text-center text-dark">
                                     {{ $row->nama_pemohon }}
@@ -65,17 +60,8 @@
                                     {{ $row->statusbayar }}
                                 </td>
                                 <td>
-                                    <a href="/kerkoff/{{ $row->id }}" class="btn btn-success"><i
-                                            class="far fa-eye"></i></a>
-                                    <a href="/kerkoff/{{ $row->id }}/edit" class="btn btn-warning"><i
-                                            class="fas fa-pen-square"></i></a>
-                                    <form action="/kerkoff/{{ $row->id }}" method="post" class="d-inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-danger mb-4"
-                                            onclick="return confirm('Yakin akan menghapus data?')"><i
-                                                class="far fa-trash-alt"></i></button>
-                                    </form>
+                                    <a href="/cetak/karangsuci/ijinbaru/print/{{ $row->id }}" class="btn btn-success"><i
+                                            class="far fa-file-word"></i></a>
                                 </td>
                             </tr>
                             @endforeach

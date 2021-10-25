@@ -14,7 +14,10 @@ class KijingController extends Controller
      */
     public function index()
     {
-        //
+        return view('kijing.index', [
+            'judul' => 'List Ijin Kijing',
+            'data' => Kijing::paginate(5)
+        ]);
     }
 
     /**
@@ -24,7 +27,11 @@ class KijingController extends Controller
      */
     public function create()
     {
-        //
+        return view('kijing.create', [
+            'judul' => 'Ijin Kijing Baru',
+            'data' => Kijing::whereYear('ijinmulai', '2021')
+                ->count('nobuku_plat')
+        ]);
     }
 
     /**
@@ -35,7 +42,29 @@ class KijingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = $request->validate([
+            'kode' => 'required',
+            'nobuku_plat' => 'required',
+            'nama_pemohon' => 'required',
+            'nama_jenazah' => 'required',
+            'lahir_jenazah' => 'required',
+            'wafat_jenazah' => 'required',
+            'usia' => 'required',
+            'ijinmulai' => 'required',
+            'expired' => 'required',
+            'bayar' => 'required',
+            'statusbayar' => 'required',
+            'keterangan' => 'required',
+            'statusijin' => 'required',
+            'lokasimakam1' => 'required',
+            'lokasimakam2' => 'required',
+
+        ]);
+        // dd($rules);
+
+        Kijing::create($rules);
+
+        return redirect('/kijing/create')->with('berhasil', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -46,7 +75,10 @@ class KijingController extends Controller
      */
     public function show(Kijing $kijing)
     {
-        //
+        return view('kijing.detail', [
+            'judul' => 'Detail User',
+            'data' => $kijing
+        ]);
     }
 
     /**
