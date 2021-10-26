@@ -77,7 +77,7 @@ class KarangsuciController extends Controller
      */
     public function show(Karangsuci $karangsuci)
     {
-        dd($karangsuci);
+        // dd($karangsuci);
         return view('karangsuci.detail', [
             'judul' => 'Detail User',
             'data' => $karangsuci

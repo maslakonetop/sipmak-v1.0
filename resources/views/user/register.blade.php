@@ -98,11 +98,13 @@
                         @enderror
                     </div>
                     <div class="form-group row">
-                        <label for="photo" class="col-sm-4 col-form-label @error('photo') is-invalid @enderror">Unggah
+                        <label for="photo" class="col-sm-4 col-form-label">Unggah
                             Foto Profil</label>
+                        <img class="img-preview img-fluid">
                         <div class="col-sm-8">
                             <div class="input-group mb-3">
-                                <input type="file" class="form-control" id="photo" name="photo">
+                                <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo"
+                                    name="photo" onchange="previewimage()">
                             </div>
                         </div>
                         @error('photo')
@@ -119,5 +121,18 @@
         </form>
     </section>
 </div>
+<script>
+    function previewimage(){
+        const image = document.querrySelector('#photo');
+        const imgPreview = document.querrySelector('.img-preview');
+        imgPreview.style.display = 'block';
 
+        const oFReader = FileReader();
+        oFReader.readDataURL(image.file[0]);
+
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 @endsection
